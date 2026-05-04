@@ -1,0 +1,101 @@
+def shift1(x):
+  if x == 'a':
+      x = 'b'
+  elif x == 'b':
+      x = 'c'
+  elif x == 'c':
+      x = 'd'
+  elif x == 'd':
+      x = 'e'
+  elif x == 'e':
+      x = 'f'
+  elif x == 'f':
+      x = 'g'
+  elif x == 'g':
+      x = 'h'
+  elif x == 'h':
+      x = 'i'
+  elif x == 'i':
+      x = 'j'
+  elif x == 'j':
+      x = 'k'
+  elif x == 'k':
+     x = 'l'
+  elif x == 'l':
+     x = 'm'
+  elif x == 'm':
+     x = 'n'
+  elif x == 'n':
+     x = 'o'
+  elif x == 'o':
+    x = 'p'
+  elif x == 'p':
+    x = 'q'
+  elif x == 'q':
+    x = 'r'
+  elif x == 'r':
+    x = 's'
+  elif x == 's':
+    x = 't'
+  elif x == 't':
+    x = 'u'
+  elif x == 'u':
+    x = 'v'
+  elif x == 'v':
+    x = 'w'
+  elif x == 'w':
+    x = 'x'
+  elif x == 'x':
+    x = 'y'
+  elif x == 'y':
+    x = 'z'
+  elif x == 'z':
+    x = 'a'
+  return x
+
+def encode(string, shift):
+    string2 = string.lower()#makes the string lowercase
+    shift2 = 26 + shift#adds 26 to the shift to allow negatives
+    string1 = string2.split()#splits strings into individual words
+    finalmessage = []#creates an empty list for the encoded words
+    for word in string1: #loops for each word in the string
+      word3 = ''#creates an empty string to add the encoded letters to
+      for x in word:#loops for every letter in the word
+        y = x#stores what letter is in each word in a variable
+        for i in range(shift2):#loops this code the amount of times as the shift
+          y = shift1(y)#changes the letter to the next one in the alphabet
+        word3 += y#adds the encoded letter to the encoded word
+      finalmessage.append(word3)#adds the word to the list of encoded words
+    string3 = " ".join(finalmessage)#loins the list into a string again
+    return string3
+
+def decode(string, shift):#same function as above, except the shift is negative this time
+    string2 = string.lower()
+    shift2 = 26 - shift
+    string1 = string2.split()
+    finalmessage = []
+    for word in string1:
+      word3 = ''
+      for x in word:
+        y = x
+        for i in range(shift2):
+          y = shift1(y)
+        word3 += y
+      finalmessage.append(word3)
+    string3 = " ".join(finalmessage)
+    return string3
+
+string = input("Please type the string to encode or decode\n")
+while True:
+  try:
+    shift = int(input("please give me the shift\n"))
+    break
+  except ValueError:
+    print('That is not a number')#checks if you put a number for the shift value, and makes you do it again if you don't
+encodedecode = int(input("press 1 for encoding or 2 for decoding\n"))
+if encodedecode == 1:
+  result = encode(string, shift)
+  print(result)
+else:
+  result1 = decode(string, shift)
+  print(result1)
